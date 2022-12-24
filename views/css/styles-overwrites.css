@@ -1,0 +1,45 @@
+/*!
+* My styles to overwrite styles.css
+and to add additional styles
+*/
+.navbar-height{
+    height: 150px;
+}
+/*! Main color for application is orange */
+.app-color{
+    color: #F18A03;
+}
+.app-background{
+    background-color:#F18A03;
+}
+/*! Secondary color for application is cyan blue */
+.app-color-sec{
+    color: #00B6CA;
+}
+
+.app-background-sec{
+    background-color:#00B6CA;
+}
+
+.font-size-30{
+    font-size:30px;
+}
+
+.divider{
+    margin-top: 0;
+    color: #F18A03;
+}
+
+/*! Overwrite bootstrap navbar classes change color */
+.navbar-light .navbar-nav .nav-link{
+    color: #F8B34D!important;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    background-color: #ffefe1!important;
+    font-weight: 600;
+    border-radius: 6px;
+}
+.nav-link, .navbar-light .navbar-nav .nav-link.active{
+    color: #F18A03!important;
+}
+

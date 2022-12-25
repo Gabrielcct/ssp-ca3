@@ -5,21 +5,22 @@
 * Page accessed at 25/12/2022.
 */
 
-// Dclaring our pages and path
+
+// setting paths and connecting them to variables 
 const routes = {
     '/' : home,
     '/shop' : shop,
     '/cart' : cart
  };
+
 // use jQuery to get div element with id root
 const rootDiv = document.getElementById('root');
-// attach as inner html proper file
-rootDiv.innerHTML = routes[window.location.pathname];
+// attach as inner html proper file. Set initially a home 
+rootDiv.innerHTML = routes['/'];
 
 // on link click we will use this method
 // reference : https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
 const onNavigate = (pathName) =>{
-    
     window.history.pushState(
         pathName,
         window.location.origin + pathName

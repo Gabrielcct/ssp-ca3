@@ -83,9 +83,9 @@
 } 
 
 footer{
-    color: white;
     padding: 32px;
     margin-top: 100px;
+    
 }
 
 
@@ -112,6 +112,18 @@ footer{
     color: #fff;
     background-color: #d17d0f;
     border-color: #d17d0f;
+}
+
+.btn-success{
+    color: #fff;
+    background-color: #00b6ca;
+    border-color: #00b6ca;
+}
+
+.btn-success:hover{
+    color: #fff;
+    background-color: #1292a1;
+    border-color: #1292a1;
 }
 
 .btn{

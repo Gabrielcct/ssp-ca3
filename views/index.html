@@ -11,7 +11,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/styles-overwrites.css" rel="stylesheet" />
-       
+        
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -25,9 +25,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Cart</a></li>
+                        <!-- Different pages will be handled using this guide - Reference: https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c-->
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#" onclick="onNavigate('/'); return false;">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="onNavigate('/shop'); return false;">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="onNavigate('/cart'); return false;">Cart</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,17 +37,25 @@
         <!-- Page content-->
         <div class="container">
             <hr class="divider"/>
-            <div class="text-center mt-5">
-                <h1>A Bootstrap 5 Starter Template</h1>
-                <p class="lead">A complete project boilerplate built with Bootstrap</p>
-                <p>Bootstrap v5.1.3</p>
-            </div>
+            <!-- For routing - content will be placed as innerhtml inside this div Reference: https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c-->
+            <div id="root"></div>
         </div>
+        <!-- jquery import from teacher project -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <!-- added Font-awesome kit using https://fontawesome.com/kits/ -->
         <script src="https://kit.fontawesome.com/710549ee58.js" crossorigin="anonymous"></script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Router pages -->
+        <!-- Home page -->
+        <script src="js/home.js"></script>
+        <!-- Cart page -->
+        <script src="js/cart.js"></script>
+        <!-- Shop page -->
+        <script src="js/shop.js"></script>
+        <!-- Router - need to be added after pages or it gives error -->
+        <script src="js/router.js"></script>
     </body>
 </html>

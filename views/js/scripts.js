@@ -85,6 +85,7 @@ function createCartTableRows(elements){
                         <button class="btn btn-sm btn-primary" onclick="remove(${i})">-</button>
                     <td>
                     <td id="price-${i}"> ${elements[i].price}<td>
+                    <td><button type="button" class="btn btn-danger btn-sm" onclick="removeItemFromCart(${i})">Remove</button></td>
                 </tr>`;
     }
     return rows;
@@ -161,6 +162,7 @@ function updateTotalValue(valueToAdd, isAdd){
     }else{
         currentTotal -= valueToAdd;
     }
+    currentTotal = currentTotal.toFixed(2).toString();
     updateElementHTML('#totalPriceId', currentTotal);
 }
 
@@ -170,6 +172,20 @@ function removeWholeRow(index){
     // remove element by id
     // Reference: https://api.jquery.com/remove/
     $(id).remove();
+}
+
+/**
+ * Removes item from cart
+ * @param {*} index - position of item (row in table)
+ */
+function removeItemFromCart(index){
+    // get element and value
+    let elementData = getQuantityElementValue(index);
+    //remove whole row
+    removeWholeRow(index);
+    let valueToRemove = elementData.price * elementData.quantity;
+    // update total value by removing price of removed element
+    updateTotalValue(valueToRemove, false);
 }
 
 // Utility function for getting the parent tag of a given tag

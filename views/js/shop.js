@@ -14,7 +14,6 @@ const shop =`
         <div id="cart" class="col-lg-8 mb-5">
             <h3 class="fw-normal margin-bottom-35">Cart</h1>
             <button type="button" onclick="addItemsToCart('menuTable','cartTableBody')" class="btn btn-success btn-block">Add to Cart</button>
-            <button type="button" class="btn btn-danger btn-block">Remove from Cart</button>
             <div id="cartId">
                 <table id="cartTable" border="0" class="indent table table-striped table-borderless">
                     <thead>

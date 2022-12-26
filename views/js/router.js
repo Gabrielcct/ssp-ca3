@@ -10,7 +10,7 @@
 const routes = {
     '/' : home,
     '/shop' : shop,
-    '/cart' : cart
+    '/manager' : manager
  };
 
 // use jQuery to get div element with id root
@@ -26,8 +26,8 @@ const onNavigate = (pathName) =>{
         window.location.origin + pathName
     )
     rootDiv.innerHTML = routes[pathName];
-    // draw table only on shop 
-    if(pathName === '/shop'){
+    // draw table only on shop and shop manager 
+    if(pathName !== '/'){
         drawTable();
     }
     

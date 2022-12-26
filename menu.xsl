@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 	<xsl:template match="/">
-		<table id="menuTable" border="1" class="indent">
+		<table id="menuTable" border="1" class="indent table table-striped table-borderless">
 			<thead>
 				<tr>
 					<th>Select</th>
@@ -22,7 +22,7 @@
 								<xsl:value-of select="boolean(@kitten)" />
 							</xsl:attribute>
 							<td align="center">
-								<input name="item0" type="checkbox" />
+								<input class="form-check-input" name="item0" type="checkbox" />
 							</td>
 							<td>
 								<xsl:value-of select="listing" />

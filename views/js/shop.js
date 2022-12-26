@@ -15,26 +15,13 @@ const shop =`
             <h3 class="fw-normal margin-bottom-35">Cart</h1>
             <button type="button" onclick="addItemsToCart('menuTable','cartTableBody')" class="btn btn-success btn-block">Add to Cart</button>
             <div id="cartId">
+                <!-- Empty cart -->
+                <div id="empty-cart"> Cart is empty</div>
+                <!-- Cart with data -->
                 <table id="cartTable" border="0" class="indent table table-striped table-borderless">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartTableBody">
-                        <!-- Add rows here -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><strong>Total Price</strong></td>
-                            <td></td>
-                            <td id="totalPriceId"></td>
-                        </tr>
-                    </tfoot>
+                    
                 </table>
-                <div>
+                <button id="buy-button" type="button" onclick="buy()" class="btn btn-primary btn-block">Buy</button>
             </div>
         </div>
     </div>

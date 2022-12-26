@@ -11,6 +11,8 @@ var gEntreeCount = 0;
 
 // Add items to Cart
 function addItemsToCart(tableId, cartTableId){
+    // create a table for cart
+    addCartTable();
     //cart value
     var cartTotal = 0.0;
     // all selected elements
@@ -47,6 +49,43 @@ function addItemsToCart(tableId, cartTableId){
     totalPrice.innerHTML = cartTotal.toFixed(2).toString();
 
 }
+
+
+function addCartTable(){
+    // remove cart is empty
+    $("#empty-cart").empty();
+    // empty current value
+    $("#cartTable").empty();
+    let emptyTable = getEmptyTable();
+    // add new value as html
+    $("#cartTable").html(emptyTable); 
+ }
+ 
+ /**
+  * Get empty table for cart
+  * @returns empty table for cart
+  */
+ function getEmptyTable(){
+     return `
+         <thead>
+             <tr>
+                 <th>Item</th>
+                 <th>Quantity</th>
+                 <th>Price</th>
+             </tr>
+         </thead>
+         <tbody id="cartTableBody">
+             <!-- Add rows here -->
+         </tbody>
+         <tfoot>
+             <tr>
+                 <td><strong>Total Price</strong></td>
+                 <td></td>
+                 <td id="totalPriceId"></td>
+             </tr>
+         </tfoot>
+     `;
+ }
 
 /**
  * Get all data relevant for element
@@ -164,6 +203,17 @@ function updateTotalValue(valueToAdd, isAdd){
     }
     currentTotal = currentTotal.toFixed(2).toString();
     updateElementHTML('#totalPriceId', currentTotal);
+    // if value is 0 there is nothing in cart so remove table and display message empty cart
+    // use ==  instead === to not check the type because currentTotal is string now
+    if(currentTotal == 0){
+        removeCartTable();
+    }
+}
+
+function removeCartTable(){
+    $("#empty-cart").html("Cart is empty.");
+    // empty current value
+    $("#cartTable").empty();
 }
 
 function removeWholeRow(index){
@@ -186,6 +236,11 @@ function removeItemFromCart(index){
     let valueToRemove = elementData.price * elementData.quantity;
     // update total value by removing price of removed element
     updateTotalValue(valueToRemove, false);
+}
+
+function buy(){
+    alert('Congratulations You successfully bought your items!')
+    removeCartTable();
 }
 
 // Utility function for getting the parent tag of a given tag

@@ -26,6 +26,11 @@ const onNavigate = (pathName) =>{
         window.location.origin + pathName
     )
     rootDiv.innerHTML = routes[pathName];
+    // draw table only on shop 
+    if(pathName === '/shop'){
+        drawTable();
+    }
+    
 }
 
 /**
@@ -35,5 +40,6 @@ const onNavigate = (pathName) =>{
  * reference : https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
  */
 window.onpopstate = () => {
-    rootDiv.innerHTML = routes[window.location.pathname]
+    rootDiv.innerHTML = routes[window.location.pathname];
 }
+

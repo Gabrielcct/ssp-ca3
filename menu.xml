@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<menu>
+  <category name="Food">
+    <item>
+      <listing>Royal Canin Indoor Cat</listing>
+      <price>24.99</price>
+      
+    </item>
+    <item kitten="true">
+      <listing>Royal Canin Kitten</listing>
+      <price>6.99</price>
+      
+    </item>
+    <item kitten="true">
+      <listing>Royal Canin Mother and Babycat</listing>
+      <price>5.99</price>
+      
+    </item>
+  </category>
+
+  <category name="Toys">
+    <item>
+      <listing>Plush Mouse with Catnip</listing>
+      <price>1.80</price>
+    </item>
+    <item>
+      <listing>Toy Set with Balls and Mice</listing>
+      <price>4.20</price>
+    </item>
+    <item>
+      <listing>Roundabout Cat Toy</listing>
+      <price>5.50</price>
+    </item>
+  </category>
+  <category name="Litter">
+    <item>
+      <listing>Hygiene Plus Cat Litter</listing>
+      <price>16.99</price>
+    </item>
+    <item>
+      <listing>Ultra Clumping Cat Litter</listing>
+      <price>15.29</price>
+    </item>
+    <item>
+      <listing>Natural Clumping Litter</listing>
+      <price>6.79</price>
+    </item>
+  </category>
+  <category name="Hygene products">
+    <item>
+      <listing>Neutral Shampoo</listing>
+      <price>10.99</price>
+    </item>
+    <item>
+      <listing>Dry Shampoo</listing>
+      <price>4.79</price>
+    </item>
+    <item decaf="true">
+      <listing>Microfibre Towel</listing>
+      <price>9.99</price>
+    </item>
+  </category>
+  
+</menu>

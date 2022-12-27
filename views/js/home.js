@@ -15,7 +15,7 @@ const home =`
                         <!-- text -->
                         <p class="margin-top-25 margin-bottom-35">Give your cat best product it deserves. Find on our web shop</p>
                         <!-- button -->
-                        <button class="btn btn-primary">Shop</button>
+                        <button class="btn btn-primary" onclick="onNavigate('/shop', 'nav-shop')">Shop</button>
                 </div>
                 <!-- TOP RIGHT  DIV -->
                 <div class="top-right col-6">

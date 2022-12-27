@@ -8,7 +8,6 @@
 
 var gEntreeCount = 0;
 
-
 // Add items to Cart
 function addItemsToCart(tableId, cartTableId){
     // create a table for cart
@@ -69,9 +68,8 @@ function addCartTable(){
      return `
          <thead>
              <tr>
-                 <th>Item</th>
-                 <th>Quantity</th>
-                 <th>Price</th>
+                 <th colspan="2">Item</th>
+                 <th colspan="2">Price</th>
              </tr>
          </thead>
          <tbody id="cartTableBody">
@@ -79,9 +77,8 @@ function addCartTable(){
          </tbody>
          <tfoot>
              <tr>
-                 <td><strong>Total Price</strong></td>
-                 <td></td>
-                 <td id="totalPriceId"></td>
+                 <td colspan="2"><strong>Total Price</strong></td>
+                 <td colspan="2" id="totalPriceId" class="text-right"></td>
              </tr>
          </tfoot>
      `;
@@ -117,14 +114,14 @@ function createCartTableRows(elements){
     // for each element create a table row
     for(i=0; i<elements.length; i++){
         rows += `<tr id="element-row-${i}">
-                    <td> ${elements[i].name}<td>
+                    <td> ${elements[i].name}</td>
                     <td>
-                        <button class="btn btn-sm btn-primary" onclick="add(${i})">+</button> 
+                        <button class="btn btn-sm btn-primary btn-cart" onclick="add(${i})">+</button> 
                         <span id="quantity-${i}">${elements[i].quantity}</span>
-                        <button class="btn btn-sm btn-primary" onclick="remove(${i})">-</button>
-                    <td>
-                    <td id="price-${i}"> ${elements[i].price}<td>
-                    <td><button type="button" class="btn btn-danger btn-sm" onclick="removeItemFromCart(${i})">Remove</button></td>
+                        <button class="btn btn-sm btn-primary btn-cart" onclick="remove(${i})">-</button>
+                    </td>
+                    <td id="price-${i}"> ${elements[i].price}</td>
+                    <td><button type="button" class="btn btn-danger btn-sm btn-cart" onclick="removeItemFromCart(${i})">x</button></td>
                 </tr>`;
     }
     return rows;
@@ -255,3 +252,47 @@ function getParentTag(oNode, sParentType) {
     return oParent;
 };
 
+
+var drawTable = function draw_table(){
+    $("#results").empty();
+    $.getJSONuncached = function(url){
+        return $.ajax(
+        {
+            url: url,
+            type: 'GET',
+            cache: false,
+            success: function(html){
+                console.log(html)
+                $("#results").append(html);
+                select_row();
+            }
+        });
+    };
+    $.getJSONuncached("/get/html")
+    
+};
+
+function select_row(){
+    $("#menuTable tbody tr[id]").click(function(){
+        $(".selected").removeClass("selected");
+        $(this).addClass("selected");
+        var section = $(this).prevAll("tr").children("td[colspan='3']").length - 1;
+        var entree = $(this).attr("id") - 1;
+        delete_row(section, entree);
+    });
+};
+
+function delete_row(sec, ent){
+    $("#delete").click(function (){
+        $.ajax({
+            url: "/post/delete",
+            type: "POST",
+            data: {
+                section: sec,
+                entree: ent
+            },
+            cache: false,
+            success: setTimeout(drawTable, 1000)
+        });
+    });
+};

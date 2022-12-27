@@ -4,20 +4,16 @@
     <item>
       <listing>Royal Canin Indoor Cat</listing>
       <price>24.99</price>
-      
     </item>
     <item kitten="true">
       <listing>Royal Canin Kitten</listing>
       <price>6.99</price>
-      
     </item>
     <item kitten="true">
       <listing>Royal Canin Mother and Babycat</listing>
       <price>5.99</price>
-      
     </item>
   </category>
-
   <category name="Toys">
     <item>
       <listing>Plush Mouse with Catnip</listing>
@@ -60,5 +56,4 @@
       <price>9.99</price>
     </item>
   </category>
-  
 </menu>

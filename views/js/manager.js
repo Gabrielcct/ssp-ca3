@@ -10,7 +10,7 @@ const manager =`
         <h1 class="fw-normal margin-bottom-35 text-center">Welcome to store manager</h1>
         <div id="menu" class="col-lg-4 mb-5 order-1">
             <p class="lead margin-bottom-35">Add new products to store by selecting product category and typing new product name and price. Or remove existing product from shop by selecting product and clicking on delete button. </p>
-            <form enctype="application/json" action="/post/json" method="post">
+            <form enctype="application/json" action="/post/json" method="post" class="was-validated">
                 <div class="form-group">
                     <select class="form-select" name="sec_n">
                         <option value="0">Food</option>
@@ -18,8 +18,16 @@ const manager =`
                         <option value="2">Litter</option>
                         <option value="3">Hygene products</option>
                     </select>
-                    <input class="form-control mt-3" type="text" name="listing" placeholder="Product">
-                    <input class="form-control mt-3" type="text" name="price" placeholder="Price">
+                    <div class="input-group">
+                        <input class="form-control mt-3" type="text" name="listing" placeholder="Product" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="input-group">
+                        <input class="form-control mt-3" type="number" step="0.01" name="price" placeholder="Price" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
                     <div class="d-grid gap-2 mt-3">
                         <button type="submit" class="btn btn-success btn-block">Add to Shop</button>
                     </div>
@@ -32,3 +40,4 @@ const manager =`
         <div id="results" class="col-lg-8 mb-5 order-2"></div>
     </div>
 `;
+

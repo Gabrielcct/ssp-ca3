@@ -20,7 +20,7 @@ rootDiv.innerHTML = routes['/'];
 
 // on link click we will use this method
 // reference : https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
-const onNavigate = (pathName) =>{
+const onNavigate = (pathName, elId) =>{
     window.history.pushState(
         pathName,
         window.location.origin + pathName
@@ -30,7 +30,11 @@ const onNavigate = (pathName) =>{
     if(pathName !== '/'){
         drawTable();
     }
-    
+    //on clicking navigation button 
+    // remove first active class
+    $(".nav-link").removeClass("active"); 
+    // and then attach it to currently clicked link by jQuery
+    $(`#${elId}`).addClass("active");
 }
 
 /**

@@ -132,6 +132,14 @@ footer{
     padding-right: 40px;
 }
 
+.btn-custom{
+    font-size: 12px;
+}
+
+.margin-right-15{
+    margin-right: 15px;
+}
+
 /*! Overwrite bootstrap card classes 
 *   Used box shadow generator for shadows https://cssgenerator.org/box-shadow-css-generator.html
 */
@@ -147,9 +155,13 @@ footer{
     height: 500px;
 }
 .card-text{
-    max-height: 305px;
+    height: 305px;
     overflow-y: auto;
 }    
+.textarea-text{
+    height: 298px;
+}
+
 .card-title{
     margin-top: 10px;
     margin-bottom: 30px;
@@ -171,6 +183,11 @@ footer{
     text-transform: uppercase;
     border-bottom: 1px solid #9b9b9b;
     padding-bottom: 25px;
+}
+
+.card-title-input{
+    width: 170px;
+    overflow-x: auto;
 }
 
 .cart-icon{

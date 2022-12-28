@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cards>
-    <card>
-      <title>Royal Canin Indoor Cat</title>
-      <text>Royal Canin's mission has always been to promote nutrition and health. This is characterised by an exact balance of fifty different nutrients (proteins, fats, carbohydrates, amino acids, fatty acids, mineral salts, vitamins and essential elements). The formulation of their food is made up of a complex blend that guarantees a consistent nutrition.</text>
-    </card>
-    <card>
-      <title>Cat Toys and towers</title>
-      <text>Is your cat a house wrecker, scratching your furniture or walls? What you need is a scratching post or scratching tree. We have a wide range of products to help save your property – from scratching posts for small cats and kittens, to scratching mats and scratching tree cat furniture that also provides activity on several levels. Some of our cat trees are huge and reach the ceiling with hammocks and ledges and sisal poles. You can also admire a cat tree as a stunning piece of furniture for your house. Or as a piece of art. Our selection of cat toys provides your cat with mental and physical stimulation to help them maintain a healthy lifestyle. They also have fun.</text>
-    </card>
-    <card>
-      <title>Cat litter</title>
-      <text>Cat litter is an essential supply for all indoor cats. It is used instinctively by a cat to bury its urine and feces, but some owners have preferences for what type of litter they'd like their cats to use.</text>
-    </card>
-    <card>
-      <title>Hygiene products</title>
-      <text>Cat hygiene should be a first concearn for every cat owner. Our range of hygiene products from shampoos to cleaning wipes will provide for every need.</text>
-    </card>
-  
+  <card>
+    <title>1Royal Canin Indoor Cat</title>
+    <text>Royal Canin's mission has always been to promote nutrition and health. This is characterised by an exact balance of fifty different nutrients (proteins, fats, carbohydrates, amino acids, fatty acids, mineral salts, vitamins and essential elements). The formulation of their food is made up of a complex blend that guarantees a consistent nutrition.</text>
+  </card>
+  <card>
+    <title>Cat Toys and towers</title>
+    <text>Is your cat a house wrecker, scratching your furniture or walls? What you need is a scratching post or scratching tree. We have a wide range of products to help save your property – from scratching posts for small cats and kittens, to scratching mats and scratching tree cat furniture that also provides activity on several levels. Some of our cat trees are huge and reach the ceiling with hammocks and ledges and sisal poles. You can also admire a cat tree as a stunning piece of furniture for your house. Or as a piece of art. Our selection of cat toys provides your cat with mental and physical stimulation to help them maintain a healthy lifestyle. They also have fun.</text>
+  </card>
+  <card>
+    <title>Cat litter</title>
+    <text>Cat litter is an essential supply for all indoor cats. It is used instinctively by a cat to bury its urine and feces, but some owners have preferences for what type of litter they'd like their cats to use.</text>
+  </card>
+  <card>
+    <title>Hygiene products</title>
+    <text>Cat hygiene should be a first concearn for every cat owner. Our range of hygiene products from shampoos to cleaning wipes will provide for every need.</text>
+  </card>
 </cards>

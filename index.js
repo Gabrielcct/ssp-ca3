@@ -88,6 +88,15 @@ router.get('/get/cards', function(req, res) {
     return createGetResponse(res, 'cards.xml', 'cards.xsl')
 });
 
+/**
+ * Endpoint to get XML file for cards ready for edit
+ * Type: GET
+ * UrL: '/get/editcards'
+ * Provides: XML transformed to html with xsl (as string)
+ */
+router.get('/get/editcards', function(req, res) {
+    return createGetResponse(res, 'cards.xml', 'cardsedit.xsl')
+});
 
 
 /**
@@ -144,7 +153,7 @@ router.post('/post/json', function(req, res){
  **/
 router.post('/post/delete', function (req,res) {
     function deleteJSON(obj) {
-        console.log(obj);
+        
         XMLtoJSON('menu.xml', function(err, result){
             if (err) throw (err);
 
@@ -155,11 +164,154 @@ router.post('/post/delete', function (req,res) {
             });
         });
     };
-
-    deleteJSON(req.body);
-
-    res.redirect('back');
+    // create new validator v
+    const v = new Validator(req.body, {
+        section: 'required|integer', //position in array so needs to be integer
+        entree: 'required',
+    });
+    
+    // do validation
+    v.check().then(function (matched) {
+        // if there are errors
+        if (!matched) {
+            //send back status 422 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+            res.status(422);
+            res.body = v.errors;
+        }else{
+            deleteJSON(req.body);
+        }
+        
+        res.redirect('back');
+    });
 })
+
+/**
+ * Endpoint to update XML file
+ * Type: POST
+ * UrL: '/post/editCard'
+ *  
+ **/
+router.post('/post/editCard', function(req, res){
+    /**
+     * Append json and return it as body
+     * @param {*} obj 
+     */
+    function appendJSON(obj){
+        XMLtoJSON('cards.xml', function(err, result) {
+            if (err) throw (err);
+            // add new listing to xml
+            let card = result.cards.card[obj.position];
+            card.title = obj.title;
+            card.text = obj.text;
+            
+            //console.log(JSON.stringify(result, null, " "));
+            JSONtoXML('cards.xml', result, function(err){
+                if (err) console.log(err);
+            });
+        });
+    };
+
+    // create new validator v
+    const v = new Validator(req.body, {
+        position: 'required|integer', //position in array so needs to be integer
+        title: 'required',
+        text: 'required'
+    });
+    
+    // do validation
+    v.check().then(function (matched) {
+        // if there are errors
+        if (!matched) {
+            //send back status 422 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+            res.status(422);
+            res.body = v.errors;
+        }else{
+            appendJSON(req.body);
+        }
+        
+        res.redirect('back');
+    });
+
+});
+
+router.post('/post/addCard', function(req, res){
+    /**
+     * Append json and return it as body
+     * @param {*} obj 
+     */
+    function appendJSON(obj){
+        XMLtoJSON('cards.xml', function(err, result) {
+            if (err) throw (err);
+            // add new listing to xml
+            result.cards.card.push({'title': obj.title, 'text': obj.text});
+            
+            JSONtoXML('cards.xml', result, function(err){
+                if (err) console.log(err);
+            });
+        });
+    };
+
+    // create new validator v
+    const v = new Validator(req.body, {
+        title: 'required',
+        text: 'required'
+    });
+    
+    // do validation
+    v.check().then(function (matched) {
+        // if there are errors
+        if (!matched) {
+            //send back status 422 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+            res.status(422);
+            res.body = v.errors;
+        }else{
+            appendJSON(req.body);
+        }
+        
+        res.redirect('back');
+    });
+
+});
+
+
+router.post('/post/deleteCard', function(req, res){
+    /**
+     * Append json and return it as body
+     * @param {*} obj 
+     */
+    function appendJSON(obj){
+        XMLtoJSON('cards.xml', function(err, result) {
+            if (err) throw (err);
+            
+            delete result.cards.card[obj.position];;
+            
+            JSONtoXML('cards.xml', result, function(err){
+                if (err) console.log(err);
+            });
+        });
+    };
+
+    // create new validator v
+    const v = new Validator(req.body, {
+        position: 'required|integer', //position in array so needs to be integer
+    });
+    
+    // do validation
+    v.check().then(function (matched) {
+        // if there are errors
+        if (!matched) {
+            //send back status 422 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+            res.status(422);
+            res.body = v.errors;
+        }else{
+            appendJSON(req.body);
+        }
+        
+        res.redirect('back');
+    });
+
+});
+
 
 /** ********************** SERVER ********************** **/  
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {

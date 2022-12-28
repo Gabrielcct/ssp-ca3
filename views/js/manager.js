@@ -27,7 +27,7 @@ const manager =`
                     <!-- MENU TO EDIT SHOP -->
                     <div id="menu" class="col-lg-4 mb-5 order-1">
                         <p class="lead margin-bottom-35">Add new products to store by selecting product category and typing new product name and price. Or remove existing product from shop by selecting product and clicking on delete button. </p>
-                        <form enctype="application/json" action="/post/json" method="post" class="was-validated">
+                        <form enctype="application/json" action="/post/json" method="post" class="was-validated" id="shopForm">
                                 <div class="form-group">
                                     <select class="form-select" name="sec_n">
                                         <option value="0">Food</option>
@@ -60,7 +60,40 @@ const manager =`
             </div>
             <!-- HOME PAGE MANAGER TAB CONTENT -->
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            
+                <div class="bottom row margin-top-60 margin-bottom-60">
+                    <!-- BOTTOM TOP DIV -->
+                    <div class="bottom-top col-12 text-center">
+                            <!-- Main text -->
+                            <h4 class="fw-normal text-uppercase"> Edit or add Cards</h4>  
+                            <!-- text -->
+                            <p class="margin-top-25 margin-bottom-60">Select a card to edit or add new cards below</p>
+                    </div>
+                    <!-- BOTTOM BOTTOM DIV - hold cards -->
+                    <div class="bottom-bottom row" id="cards-edit">
+                    </div>
+                </div>
+
+                <div class="add-cards-container text-left">
+                    <h4 class="fw-normal text-uppercase mb-3">Add Cards</h4>
+                    <div class="row">
+                        <form class="was-validated" id="cardForm">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="newCardTitle">New Card Title</label>
+                                <input type="text" class="form-control" id="newCardTitle" required>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                    
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="newCardText">Enter new card text</label>
+                                <textarea class="form-control" id="newCardText" rows="20" required></textarea>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="d-grid gap-2 mt-3">
+                                <button type="submit" class="btn btn-success btn-block" onClick="addNewCard()">Add Card</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             
         </div>

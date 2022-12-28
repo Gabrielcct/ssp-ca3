@@ -15,6 +15,7 @@ const routes = {
 
 // use jQuery to get div element with id root
 const rootDiv = document.getElementById('root');
+
 // attach as inner html proper file. Set initially a home 
 rootDiv.innerHTML = routes['/'];
 
@@ -29,6 +30,7 @@ const onNavigate = (pathName, elId) =>{
     // draw table only on shop and shop manager 
     if(pathName !== '/'){
         drawTable();
+        getEditCards();
     }
     // on home page get cards
     if(pathName === '/'){

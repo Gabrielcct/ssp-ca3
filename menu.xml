@@ -5,11 +5,11 @@
       <listing>Royal Canin Indoor Cat</listing>
       <price>24.99</price>
     </item>
-    <item kitten="true">
+    <item >
       <listing>Royal Canin Kitten</listing>
       <price>6.99</price>
     </item>
-    <item kitten="true">
+    <item >
       <listing>Royal Canin Mother and Babycat</listing>
       <price>5.99</price>
     </item>
@@ -51,7 +51,7 @@
       <listing>Dry Shampoo</listing>
       <price>4.79</price>
     </item>
-    <item decaf="true">
+    <item >
       <listing>Microfibre Towel</listing>
       <price>9.99</price>
     </item>

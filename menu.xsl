@@ -18,9 +18,6 @@
 					</tr>
 					<xsl:for-each select="item">
 						<tr id="{position()}">
-							<xsl:attribute name="kitten">
-								<xsl:value-of select="boolean(@kitten)" />
-							</xsl:attribute>
 							<td align="center">
 								<input class="form-check-input" name="item0" type="checkbox" />
 							</td>

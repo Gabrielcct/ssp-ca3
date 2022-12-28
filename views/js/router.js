@@ -19,7 +19,7 @@ const rootDiv = document.getElementById('root');
 rootDiv.innerHTML = routes['/'];
 
 // on link click we will use this method
-// reference : https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
+// https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
 const onNavigate = (pathName, elId) =>{
     window.history.pushState(
         pathName,
@@ -32,7 +32,7 @@ const onNavigate = (pathName, elId) =>{
     }
     //on clicking navigation button 
     // remove first active class
-    $(".nav-link").removeClass("active"); 
+    $(".top-nav").removeClass("active"); 
     // and then attach it to currently clicked link by jQuery
     $(`#${elId}`).addClass("active");
 }
@@ -41,7 +41,7 @@ const onNavigate = (pathName, elId) =>{
  * when the browser call’s it’s pushState() method 
  * another method is also called i.e window.onpopstate.
  * Whenever the pushState is called we are going to render our section. For that all we need to apply this.
- * reference : https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
+ * https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
  */
 window.onpopstate = () => {
     rootDiv.innerHTML = routes[window.location.pathname];

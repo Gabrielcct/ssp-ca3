@@ -296,3 +296,7 @@ function delete_row(sec, ent){
         });
     });
 };
+
+
+
+

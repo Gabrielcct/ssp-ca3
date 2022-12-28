@@ -1,3 +1,4 @@
+/** ********************** VARIABLES AND IMPORTS ********************** **/    
 const   http = require('http'), //HTTP server
         path = require('path'),
         express = require('express'), //Handling HTTP requests & routing
@@ -7,11 +8,21 @@ const   http = require('http'), //HTTP server
         router = express(), //Init our router
         xml2js = require('xml2js'),
         server = http.createServer(router); //Init our server
-        
-        router.use(express.static(path.resolve(__dirname,'views')));
-        router.use(express.urlencoded({extended: true}));
-        router.use(express.json());
+const { Validator } = require('node-input-validator');// added validator https://www.npmjs.com/package/node-input-validator       
+ 
+/** ********************** SET ROUTER ********************** **/         
+router.use(express.static(path.resolve(__dirname,'views')));
+router.use(express.urlencoded({extended: true}));
+router.use(express.json());
 
+       
+
+/** ********************** HELPER METHODS ********************** **/        
+/**
+ * Read a XML file and parse it as string, returning it as JSON
+ * @param {*} filename 
+ * @param {*} cb 
+ */        
 function XMLtoJSON(filename, cb){
     let filepath = path.normalize(path.join(__dirname, filename));
     fs.readFile(filepath, 'utf8', function(err, xmlStr){
@@ -20,6 +31,12 @@ function XMLtoJSON(filename, cb){
     });
 };
 
+/**
+ * Use xml2js library to add json changed row to xml file
+ * @param {*} filename 
+ * @param {*} obj 
+ * @param {*} cb 
+ */
 function JSONtoXML(filename, obj, cb){
     let filepath = path.normalize(path.join(__dirname, filename));
     let builder = new xml2js.Builder();
@@ -28,6 +45,15 @@ function JSONtoXML(filename, obj, cb){
     fs.writeFile(filepath, xml, cb);
 };
 
+
+/** ********************** ENDPOINTS ********************** **/  
+
+/**
+ * Endpoint to get XML file
+ * Type: GET
+ * UrL: '/get/html'
+ * Provides: XML as html
+ */
 router.get('/get/html', function(req, res) {
 
     res.writeHead(200, {'Content-Type' : 'text/html'});
@@ -43,11 +69,21 @@ router.get('/get/html', function(req, res) {
     res.end(html.toString());
 });
 
+/**
+ * Endpoint to update XML file
+ * Type: POST
+ * UrL: '/post/json'
+ *  
+ **/
 router.post('/post/json', function(req, res){
+    /**
+     * Append json and return it as body
+     * @param {*} obj 
+     */
     function appendJSON(obj){
-        console.log(obj);
         XMLtoJSON('menu.xml', function(err, result) {
             if (err) throw (err);
+            // add new listing to xml
             result.menu.category[obj.sec_n].item.push({'listing': obj.listing, 'price': obj.price});
             console.log(JSON.stringify(result, null, " "));
             JSONtoXML('menu.xml', result, function(err){
@@ -56,11 +92,35 @@ router.post('/post/json', function(req, res){
         });
     };
 
-    appendJSON(req.body);
+    // create new validator v
+    const v = new Validator(req.body, {
+        sec_n: 'required|integer', //position in array so needs to be integer
+        listing: 'required',
+        price: 'required'
+    });
+    
+    // do validation
+    v.check().then(function (matched) {
+        // if there are errors
+        if (!matched) {
+            //send back status 422 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+            res.status(422);
+            res.body = v.errors;
+        }else{
+            appendJSON(req.body);
+        }
+        
+        res.redirect('back');
+    });
 
-    res.redirect('back');
 });
 
+/**
+ * Endpoint to delete row from XML file
+ * Type: POST
+ * UrL: '/post/delete'
+ *  
+ **/
 router.post('/post/delete', function (req,res) {
     function deleteJSON(obj) {
         console.log(obj);
@@ -80,6 +140,7 @@ router.post('/post/delete', function (req,res) {
     res.redirect('back');
 })
 
+/** ********************** SERVER ********************** **/  
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
     const addr = server.address();
     console.log("Server listening at", addr.address + ":" + addr.port)

@@ -45,29 +45,50 @@ function JSONtoXML(filename, obj, cb){
     fs.writeFile(filepath, xml, cb);
 };
 
-
-/** ********************** ENDPOINTS ********************** **/  
-
 /**
- * Endpoint to get XML file
- * Type: GET
- * UrL: '/get/html'
- * Provides: XML as html
+ * To be used on all get responses
+ * @param {*} res 
+ * @param {*} xmlName 
+ * @param {*} xslName 
  */
-router.get('/get/html', function(req, res) {
-
+function createGetResponse(res, xmlName, xslName){
     res.writeHead(200, {'Content-Type' : 'text/html'});
 
-    let xml = fs.readFileSync('menu.xml', 'utf8'),
-        xsl = fs.readFileSync('menu.xsl', 'utf8');
+    let xml = fs.readFileSync(xmlName, 'utf8'),
+        xsl = fs.readFileSync(xslName, 'utf8');
 
     xml = xmlParse(xml);
     xsl = xmlParse(xsl);
 
     let html = xsltProcess(xml, xsl);
 
-    res.end(html.toString());
+    res.end(html.toString());    
+}
+
+
+/** ********************** ENDPOINTS ********************** **/  
+
+/**
+ * Endpoint to get XML file for shop
+ * Type: GET
+ * UrL: '/get/html'
+ * Provides: XML transformed to html with xsl (as string)
+ */
+router.get('/get/html', function(req, res) {
+    return createGetResponse(res, 'menu.xml', 'menu.xsl')
 });
+
+/**
+ * Endpoint to get XML file for cards
+ * Type: GET
+ * UrL: '/get/cards'
+ * Provides: XML transformed to html with xsl (as string)
+ */
+router.get('/get/cards', function(req, res) {
+    return createGetResponse(res, 'cards.xml', 'cards.xsl')
+});
+
+
 
 /**
  * Endpoint to update XML file

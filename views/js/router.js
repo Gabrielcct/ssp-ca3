@@ -30,6 +30,10 @@ const onNavigate = (pathName, elId) =>{
     if(pathName !== '/'){
         drawTable();
     }
+    // on home page get cards
+    if(pathName === '/'){
+        getCards();
+    }
     //on clicking navigation button 
     // remove first active class
     $(".top-nav").removeClass("active"); 

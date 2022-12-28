@@ -115,7 +115,7 @@ router.post('/post/json', function(req, res){
             if (err) throw (err);
             // add new listing to xml
             result.menu.category[obj.sec_n].item.push({'listing': obj.listing, 'price': obj.price});
-            console.log(JSON.stringify(result, null, " "));
+            //console.log(JSON.stringify(result, null, " "));
             JSONtoXML('menu.xml', result, function(err){
                 if (err) console.log(err);
             });

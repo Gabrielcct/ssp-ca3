@@ -235,7 +235,8 @@ function removeItemFromCart(index){
 }
 
 function buy(){
-    alert('Congratulations You successfully bought your items!')
+    alert('Congratulations You successfully bought your items!');
+    checkedElements = [];
     removeCartTable();
 }
 
@@ -261,7 +262,6 @@ var drawTable = function draw_table(){
             type: 'GET',
             cache: false,
             success: function(html){
-                console.log(html)
                 $("#results").append(html);
                 select_row();
             }
@@ -291,7 +291,10 @@ function delete_row(sec, ent){
                 entree: ent
             },
             cache: false,
-            success: setTimeout(drawTable, 1000)
+            success: function(){
+                $("#results").empty();
+                setTimeout(drawTable, 1000)
+            }
         });
     });
 };

@@ -31,11 +31,11 @@ const onNavigate = (pathName, elId) =>{
     if(pathName !== '/'){
         drawTable();
         getEditCards();
-    }
-    // on home page get cards
-    if(pathName === '/'){
+    }else{
+        // on home page get cards
         getCards();
     }
+    
     //on clicking navigation button 
     // remove first active class
     $(".top-nav").removeClass("active"); 

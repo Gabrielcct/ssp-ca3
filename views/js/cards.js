@@ -66,7 +66,12 @@ function addNewCard(){
         title: $("#newCardTitle").val(),
         text: $("#newCardText").val()
     };
-    postCard("/post/addCard", value);
+   if($("#cardForm").valid()){
+        postCard("/post/addCard", value);
+    }else{
+        alert("Invalid form")
+    }
+    
 }
 
 function postCard(url, value){

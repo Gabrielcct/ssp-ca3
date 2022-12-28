@@ -5,17 +5,15 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-
-var gEntreeCount = 0;
-
+// all selected elements
+var checkedElements = [];
 // Add items to Cart
 function addItemsToCart(tableId, cartTableId){
     // create a table for cart
     addCartTable();
     //cart value
     var cartTotal = 0.0;
-    // all selected elements
-    var checkedElements = [];
+    
     // find the table tag
     let table = document.getElementById(tableId);
     // find all inputs in table
@@ -46,7 +44,8 @@ function addItemsToCart(tableId, cartTableId){
     // add price as string value as inner html of element
     // use toFix to round it to 2 decimals. Reference: https://stackoverflow.com/questions/3163070/javascript-displaying-a-float-to-2-decimal-places
     totalPrice.innerHTML = cartTotal.toFixed(2).toString();
-
+    // remove all selected items  https://stackoverflow.com/questions/35129438/uncheck-bootstrap-checkbox-buttons-pure-javascript
+    $(":checkbox").prop('checked', false).parent().removeClass('active');
 }
 
 
@@ -298,5 +297,30 @@ function delete_row(sec, ent){
 };
 
 
+function addItemToShopItems(){
+    let value = {
+        sec_n: $("#position").val(),
+        listing: $("#listing").val(),
+        price: $("#price").val()
+    }
+    if($("#shopForm").valid()){
+        postShop("/post/json", value)
+    }else{
+        alert("Invalid form")
+    }
+   
+}
+
+function postShop(url, value){
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: value,
+        cache: false,
+        success: function(res){
+            setTimeout(drawTable(), 100)
+        } 
+    });
+}
 
 

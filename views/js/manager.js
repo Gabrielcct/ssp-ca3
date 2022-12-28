@@ -46,9 +46,6 @@ const manager =`
                                     </div>
                                 </div>
                         </form>
-                        <div class="d-grid gap-2">
-                            <button id="delete" class="btn btn-danger btn-block mt-3">Remove from shop</button>
-                        </div>
                     </div>
                     <!-- APPEND HTML FOR SHOP HERE -->
                     <div id="results" class="col-lg-8 mb-5 order-2"></div>

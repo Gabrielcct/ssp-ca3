@@ -271,16 +271,44 @@ var drawTable = function draw_table(){
     
 };
 
+function getEditShopTable(){
+    $("#results").empty();
+    $.getJSONuncached = function(url){
+        return $.ajax(
+        {
+            url: url,
+            type: 'GET',
+            cache: false,
+            success: function(html){
+                $("#results").append(html);
+            }
+        });
+    };
+    $.getJSONuncached("/get/editshop")
+    
+};
+
+function removeItemFromList(el){
+    let entree = $(el).attr("data-position");
+    let section = $(el).attr("data-category");
+    let value =  {
+        section: section -1,
+        entree: entree -1
+    };
+    console.log(value)
+    postShop("/post/delete", value);
+}
+
 function select_row(){
     $("#menuTable tbody tr[id]").click(function(){
         $(".selected").removeClass("selected");
         $(this).addClass("selected");
-        var section = $(this).prevAll("tr").children("td[colspan='3']").length - 1;
-        var entree = $(this).attr("id") - 1;
-        delete_row(section, entree);
+        
+        //var entree = $(this).attr("id") - 1;
+        //delete_row(section, entree);
     });
 };
-
+/*
 function delete_row(sec, ent){
     $("#delete").click(function (){
         $.ajax({
@@ -292,12 +320,11 @@ function delete_row(sec, ent){
             },
             cache: false,
             success: function(){
-                $("#results").empty();
-                setTimeout(drawTable, 1000)
+               
             }
         });
     });
-};
+};*/
 
 
 function addItemToShopItems(){
@@ -321,7 +348,7 @@ function postShop(url, value){
         data: value,
         cache: false,
         success: function(res){
-            setTimeout(drawTable(), 100)
+            setTimeout(getEditShopTable(), 100)
         } 
     });
 }

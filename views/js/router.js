@@ -28,9 +28,12 @@ const onNavigate = (pathName, elId) =>{
     )
     rootDiv.innerHTML = routes[pathName];
     // draw table only on shop and shop manager 
-    if(pathName !== '/'){
+    if(pathName === '/shop'){
         drawTable();
+    }else if(pathName === '/manager'){
         getEditCards();
+        getEditShopTable();
+      
     }else{
         // on home page get cards
         getCards();

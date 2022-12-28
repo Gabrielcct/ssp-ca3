@@ -98,6 +98,15 @@ router.get('/get/editcards', function(req, res) {
     return createGetResponse(res, 'cards.xml', 'cardsedit.xsl')
 });
 
+/**
+ * Endpoint to get XML file for shop ready for edit
+ * Type: GET
+ * UrL: '/get/editshop'
+ * Provides: XML transformed to html with xsl (as string)
+ */
+router.get('/get/editshop', function(req, res) {
+    return createGetResponse(res, 'menu.xml', 'menuedit.xsl')
+});
 
 /**
  * Endpoint to update XML file
@@ -167,7 +176,7 @@ router.post('/post/delete', function (req,res) {
     // create new validator v
     const v = new Validator(req.body, {
         section: 'required|integer', //position in array so needs to be integer
-        entree: 'required',
+        entree: 'required|integer',
     });
     
     // do validation
